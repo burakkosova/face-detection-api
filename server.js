@@ -12,16 +12,11 @@ const profile = require("./controllers/profile");
 app.use(express.json());
 app.use(cors());
 
-let port = process.env.PORT;
 const db = knex({
   client: "pg",
   connection: {
-    host: "ec2-54-156-110-139.compute-1.amazonaws.com",
-    port: port,
-    user: "kmpskgpbfrnlcj",
-    password:
-      "500d25e5030fb3fc1117d6cf6a3680fd83ddc5cacde9757d5059a1dd67866782",
-    database: "d6ll4sosloat1j",
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
   },
 });
 
@@ -39,6 +34,7 @@ app.get("/profile/:id", (req, res) => profile.handleProfile(req, res, db));
 
 app.put("/image", (req, res) => image.handleImage(req, res, db));
 
+let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8000;
 }
