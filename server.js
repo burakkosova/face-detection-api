@@ -25,11 +25,9 @@ const db = knex({
   },
 });
 
-// app.get("/", (req, res) => {
-//   db.select()
-//     .table("users")
-//     .then(data => res.json(data));
-// });
+app.get("/", (req, res) => {
+  res.json("it is working");
+});
 
 app.post("/signin", (req, res) => signin.handleSignIn(req, res, db, bcrypt));
 
