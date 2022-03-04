@@ -23,7 +23,7 @@ const db = knex({
 });
 
 app.get("/", (req, res) => {
-  res.json("it is working");
+  res.json("working");
 });
 
 app.post("/signin", (req, res) => signin.handleSignIn(req, res, db, bcrypt));
@@ -35,6 +35,7 @@ app.post("/register", (req, res) =>
 app.get("/profile/:id", (req, res) => profile.handleProfile(req, res, db));
 
 app.put("/image", (req, res) => image.handleImage(req, res, db));
+app.post("/image", (req, res) => image.handleAPICall(req, res));
 
 let port = process.env.PORT;
 if (port == null || port == "") {
