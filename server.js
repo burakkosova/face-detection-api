@@ -23,7 +23,7 @@ const db = knex({
 });
 
 app.get("/", (req, res) => {
-  res.json("working");
+  res.json("api is working");
 });
 
 app.post("/signin", (req, res) => signin.handleSignIn(req, res, db, bcrypt));
