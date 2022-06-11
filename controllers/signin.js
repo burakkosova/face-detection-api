@@ -7,7 +7,7 @@ const handleSignIn = (req, res, db, bcrypt) => {
     .join("login", "users.email", "=", "login.email")
     .select("*")
     .where("users.email", email)
-    .then(data => {
+    .then((data) => {
       if (data.length !== 0 && bcrypt.compareSync(password, data[0].hash)) {
         // res.json({
         //   id: data[0].id,
@@ -22,7 +22,7 @@ const handleSignIn = (req, res, db, bcrypt) => {
         return res.status(400).json("invalid user credentials");
       }
     })
-    .catch(err => res.status(400).json("error signing in"));
+    .catch((err) => res.status(400).json("error signing in"));
 };
 
 module.exports = {
